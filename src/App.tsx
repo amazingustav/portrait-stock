@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { StockInput } from "./components/StockInput";
+import { StockDisplay } from "./components/StockDisplay";
+import { useAppSelector } from './store/hooks';
 
-function App() {
+const App: React.FC = () => {
+  const stockData = useAppSelector((state) => state.stock.data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StockInput />
+      {stockData && <StockDisplay data={stockData}/>}
     </div>
   );
-}
+};
 
 export default App;
