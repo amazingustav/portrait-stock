@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 import { StockInput } from "./components/StockInput";
 import { StockDisplay } from "./components/StockDisplay";

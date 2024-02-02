@@ -1,29 +1,68 @@
+/* Style.css */
+
+/* Reset some default padding and margin */
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Add any additional styling as required */
+}
+
 body {
   font-family: Arial, sans-serif;
-}
-
-form {
-  margin: 20px;
-}
-
-input[type="text"] {
-  margin-right: 10px;
-  padding: 5px;
-}
-
-button {
-  padding: 5px 15px;
-  cursor: pointer;
-}
-
-.stock-display {
-  display: flex;
-  justify-content: space-around;
-  background-color: #f0f0f0;
   padding: 20px;
-  margin-top: 20px;
 }
 
-.stock-display div {
-  padding: 0 10px;
+/* Container for label, search input and button */
+.search-container {
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.search-label {
+  margin-right: 10px;
+}
+
+.search-input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-right: 10px;
+  width: 200px; /* or 100% if you want it to be flexible */
+}
+
+.search-button {
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* Styles for the table */
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stock-table th,
+.stock-table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+}
+
+/* Header styles */
+.stock-table th {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Apply alternating row colors if desired */
+.stock-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }

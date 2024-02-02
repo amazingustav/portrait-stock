@@ -14,9 +14,29 @@ export const StockDisplay: React.FC<StockDataProps> = ({ data}) => {
     const { averagePrice, maxVolume, minVolume, maxPrice, minPrice } = data;
 
     return (
-        <div>
-            <div>Price - Max: {maxPrice.toFixed(2)} Min: {minPrice.toFixed(2)} Average: {averagePrice.toFixed(2)}</div>
-            <div>Volume - Max: {maxVolume} Min: {minVolume}</div>
-        </div>
+        <table className="stock-table">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Maximum</th>
+                <th>Minimum</th>
+                <th>Average</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Price</td>
+                <td>${maxPrice.toFixed(2)}</td>
+                <td>${minPrice.toFixed(2)}</td>
+                <td>${averagePrice.toFixed(2)}</td>
+            </tr>
+            <tr>
+                <td>Volume</td>
+                <td>{maxVolume.toLocaleString()}</td>
+                <td>{minVolume.toLocaleString()}</td>
+                <td/>
+            </tr>
+            </tbody>
+        </table>
     );
 };

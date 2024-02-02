@@ -12,9 +12,17 @@ export const StockInput: React.FC = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={ticker} onChange={(e) => setTicker(e.target.value)} />
-            <button type="submit">Search</button>
+        <form onSubmit={handleSubmit} className="search-container">
+            <label htmlFor="stockTicker" className="search-label">Enter a Stock Ticker</label>
+            <input
+                id="stockTicker"
+                type="text"
+                value={ticker}
+                onChange={(e) => setTicker(e.target.value)}
+                className="search-input"
+                placeholder="AAPL"
+            />
+            <button type="submit" className="search-button">Search</button>
         </form>
     );
 };
