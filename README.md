@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Portrait Stock
+Portrait Stock is a single-page application that allows users to enter a stock ticker symbol and view the maximum, minimum, and average price and volume data for a specified date range. This application is designed to provide a quick and efficient way to get key financial metrics for a given stock.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech Stack
+- **TypeScript** 
+- **React**: for building user interfaces.
+- **Redux**: toolset for efficient Redux development 
+- **Axios**: HTTP client for the browser and node.js 
+- **Jest**: Testing library
 
-## Available Scripts
+## Component Structure
+- **StockInput**: This component is responsible for rendering the stock ticker input and handling the form submission.
+- **StockDisplay**: This component displays the stock data in a table format. It conditionally renders either the data table or an error message, based on the received props:
 
-In the project directory, you can run:
+## How to run
+1. Install necessary dependencies:
+```shell
+$ npm install
+```
+2. Run the application:
+```shell
+$ npm start
+```
 
-### `npm start`
+## Running tests
+The following command will launch the test runner in the interactive watch mode.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```shell
+$ npm test
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Screenshots
+Below are two screenshots demonstrating the application's functionality:
 
-### `npm test`
+### Table Populated with Data:
+This screenshot shows the application's table populated with stock data for a valid ticker.
+![img.png](public/success.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Error Message on Invalid Ticker:
+This screenshot displays the user-friendly error message when no data is found for the entered stock ticker.
+![img.png](public/error.png)
