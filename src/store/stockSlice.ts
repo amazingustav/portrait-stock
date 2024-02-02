@@ -4,11 +4,13 @@ import axios from "axios";
 interface StockState {
     data: any;
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    error?: string | null,
 }
 
 const initialState: StockState = {
     data: null,
-    status: 'idle'
+    status: 'idle',
+    error: null,
 };
 
 const stockSlice = createSlice({
@@ -19,6 +21,9 @@ const stockSlice = createSlice({
         builder.addCase(fetchStockData.fulfilled, (state, action) => {
             state.status = 'succeeded';
             state.data = action.payload;
+        });
+        builder.addCase(fetchStockData.rejected, (state, action) => {
+            state.error = action.payload as string;
         });
     },
 });
@@ -31,7 +36,10 @@ export const fetchStockData = createAsyncThunk('stock/fetchStockData', async (ti
 
         const data = response.data.results;
 
-        // Calculate max, min, and average
+        if (data.length === 0) {
+            return rejectWithValue('No data found for this ticker');
+        }
+
         const maxPrice = Math.max(...data.map((item: any) => item.high));
         const minPrice = Math.min(...data.map((item: any) => item.low));
         const averagePrice = data.reduce((acc: number, item: any) => acc + item.close, 0) / data.length;
