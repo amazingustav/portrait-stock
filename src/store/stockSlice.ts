@@ -24,7 +24,7 @@ const stockSlice = createSlice({
 });
 
 export const fetchStockData = createAsyncThunk('stock/fetchStockData', async (ticker: string) => {
-    const response = await axios.get('https://localhost:3000/api/v1/stocks', {
+    const response = await axios.get('http://localhost:3000/api/v1/stocks', {
         params: { ticker, start_date: '2023-01-01', end_date: '2023-12-31' }
     });
 
