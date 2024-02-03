@@ -21,6 +21,7 @@ $ npm install
 ```shell
 $ npm start
 ```
+Then you can access it on http://localhost:3001/ (probably the server side will be running on port 3000, so the client side will be running on 3000, so that's why the client side is running on the next available port.)
 
 ## Running tests
 The following command will launch the test runner in the interactive watch mode.

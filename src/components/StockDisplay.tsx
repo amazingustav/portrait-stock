@@ -12,10 +12,9 @@ interface StockDataProps {
 }
 
 export const StockDisplay: React.FC<StockDataProps> = ({ data}) => {
-    const error = useAppSelector((state) => state.stock.error);
-    const { averagePrice, maxVolume, minVolume, maxPrice, minPrice } = data;
+    const stockState = useAppSelector((state) => state.stock);
 
-    console.log(error)
+    const { averagePrice, maxVolume, minVolume, maxPrice, minPrice } = data;
 
     return (
         <table className="stock-table">
@@ -28,22 +27,22 @@ export const StockDisplay: React.FC<StockDataProps> = ({ data}) => {
                 </tr>
             </thead>
             <tbody>
-                {error ? (
+                {stockState.status === 'failed' ? (
                     <tr>
-                        <td colSpan={4}>{error}</td>
+                        <td colSpan={4}>{stockState.error}</td>
                     </tr>
                 ) : (
                     <>
                         <tr>
                             <td>Price</td>
-                            <td>${maxPrice.toFixed(2)}</td>
-                            <td>${minPrice.toFixed(2)}</td>
-                            <td>${averagePrice.toFixed(2)}</td>
+                            <td>{maxPrice}</td>
+                            <td>{minPrice}</td>
+                            <td>{averagePrice}</td>
                         </tr>
                         <tr>
                             <td>Volume</td>
-                            <td>{maxVolume.toLocaleString()}</td>
-                            <td>{minVolume.toLocaleString()}</td>
+                            <td>{maxVolume}</td>
+                            <td>{minVolume}</td>
                             <td/>
                         </tr>
                     </>

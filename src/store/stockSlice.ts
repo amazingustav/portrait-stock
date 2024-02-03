@@ -23,6 +23,7 @@ const stockSlice = createSlice({
             state.data = action.payload;
         });
         builder.addCase(fetchStockData.rejected, (state, action) => {
+            state.status = 'failed';
             state.error = action.payload as string;
         });
     },
@@ -34,26 +35,22 @@ export const fetchStockData = createAsyncThunk('stock/fetchStockData', async (ti
             params: { ticker, start_date: '2023-01-01', end_date: '2023-12-31' }
         });
 
-        const data = response.data.results;
-
-        if (data.length === 0) {
+        if (response.status >= 400) {
             return rejectWithValue('No data found for this ticker');
         }
 
-        const maxPrice = Math.max(...data.map((item: any) => item.high));
-        const minPrice = Math.min(...data.map((item: any) => item.low));
-        const averagePrice = data.reduce((acc: number, item: any) => acc + item.close, 0) / data.length;
-        const maxVolume = Math.max(...data.map((item: any) => item.volume));
-        const minVolume = Math.min(...data.map((item: any) => item.volume));
-
         return {
-            maxPrice,
-            minPrice,
-            averagePrice,
-            maxVolume,
-            minVolume,
+            averagePrice: response.data.average_price,
+            maxVolume: response.data.max_volume,
+            minVolume: response.data.min_volume,
+            maxPrice: response.data.max_price,
+            minPrice: response.data.min_price
         };
     } catch (error) {
+        if (axios.isAxiosError(error) && error.response && error.response.status >= 400) {
+            return rejectWithValue(error.response.data.error);
+        }
+
         return rejectWithValue(error);
     }
 });

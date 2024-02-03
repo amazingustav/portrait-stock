@@ -1,6 +1,8 @@
 import React from 'react';
 import { StockDisplay } from './StockDisplay';
 import { render, screen } from '@testing-library/react';
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 import '@testing-library/jest-dom';
 
 const mockData = {
@@ -14,8 +16,11 @@ const mockData = {
 };
 
 test('renders StockDisplay component with data', () => {
-    render(<StockDisplay {...mockData} />);
-
+    render(
+        <Provider store={store}>
+            <StockDisplay {...mockData} />
+        </Provider>
+    );
     expect(screen.getByText(/price/i)).toBeInTheDocument();
     expect(screen.getByText(/volume/i)).toBeInTheDocument();
 });
